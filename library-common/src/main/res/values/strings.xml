@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_server_error" translatable="false">服务器繁忙，请稍候再试</string>
+    <string name="common_net_error" translatable="false">请检查您的网络</string>
+    <string name="common_send" translatable="false">发送</string>
+</resources>
