@@ -3,15 +3,26 @@ package top.arakawa.demo.ui.paging
 import androidx.activity.viewModels
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.swkj.common.base.BaseActivity
+import com.swkj.common.util.ktx.toJson
+import io.ktor.client.request.*
+import io.ktor.http.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import top.arakawa.demo.R
 import top.arakawa.demo.adapter.ArticleAdapter
 import top.arakawa.demo.adapter.LoadAdapter
 import top.arakawa.demo.databinding.ActivityPaging3Binding
+import top.arakawa.demo.net.bean.Article
+import top.arakawa.demo.net.bean.Page
+import top.arakawa.demo.net.bean.WanAndroidBaseBean
 import top.arakawa.demo.viewmodel.paging.Paging3ViewModel
+import top.arakawa.ktor.Http
 
 /**
  * @author pisa

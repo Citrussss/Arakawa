@@ -2,9 +2,9 @@ package com.sw.common.net.flow
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.sw.common.net.ApiException
-import com.swkj.common.bean.BaseBean
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
@@ -53,9 +53,9 @@ class CallEnqueueFlow<T>(val originalCall: Call<T>) : Flow<Response<T>> {
                         )
                         else -> {
                             try {
-                                val infoEntity: BaseBean<Any> =
-                                    GsonUtils.fromJson(response.errorBody()?.string(), object : TypeToken<BaseBean<Any>>(){}.type)
-                                continuation.resumeWithException(ApiException(infoEntity.code,infoEntity.message))
+                                val infoEntity: JsonObject =
+                                    GsonUtils.fromJson(response.errorBody()?.string(), JsonObject::class.java)
+                                continuation.resumeWithException(ApiException(infoEntity.get("code").asInt,infoEntity.get("message").asString))
                             }catch (e:Exception){
                                 continuation.resumeWithException(HttpException(response))
                             }

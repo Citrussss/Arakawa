@@ -1,3 +1,5 @@
+include ':app-ktor'
+include ':library-ktor'
 include ':app'
 include ':library-common'
 rootProject.name = "Arakawa"
